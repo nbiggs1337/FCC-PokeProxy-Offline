@@ -1,7 +1,17 @@
 {
+  "name": "PokeProxy API - Offline",
+  "version": "1.2.0",
+  "description": "A basic Pokemon API for offline use.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "scrape": "node api/scrapper/scrapeEm.js"
+  },
   "dependencies": {
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "helmet": "^7.1.0",
     "mongoose": "^8.4.4"
   }
 }
