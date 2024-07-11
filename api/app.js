@@ -11,11 +11,9 @@ app.use(cors())
 app.use(express.json());
 
 
-require("./routes");
+const routes = require("./routes");
 
-app.get("/", (req, res) => {
-    res.send("WE are live")
-});
+app.use("/", routes)
 
 
 module.exports = app;

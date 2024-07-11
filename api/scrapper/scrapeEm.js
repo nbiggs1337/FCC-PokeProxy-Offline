@@ -12,39 +12,22 @@ app.get('/scrape', async (req, res) => {
         const response = await axios.get(url);
         const data = response.data.results;
         let localIndex = [];
-
-        data.forEach(async item => {
-            console.log(item.url)
+        let allPokes = await Promise.all(data.map( async item => {
+            // console.log(item.url)
             //create index in localIndex
-            localIndex.push({ id: item.id, name: item.name, url: `http://localhost:3000/pokemon/${item.id}`})
+            localIndex.push({ id: item.id, name: item.name, url: `http://localhost:5000/pokemon/${item.id}`})
             // fetch that pokemon 
             let fetch = await axios.get(item.url);
-            let resp = fetch.data;
+            
+            console.log(`.-.-.-. scrapping ${item.name} .-.-.-.-.`)
 
             // save to local file 
-            fs.writeFile(`data/${item.id}.json`, JSON.stringify(resp, null, 2), (err) => {
-                if (err) {
-                    console.error('Error writing file:', err);
-                    res.status(500).send('Error writing file');
-                } else {
-                    console.log(`JSON data saved to ${item.id}.json`);
-                    res.send('JSON data saved to pokemon.json');
-                }
-            })
-        })
+            return fetch.data;
+        }))
+        fs.writeFileSync("data/pokemon.json", JSON.stringify(allPokes, null, 2))
+        fs.writeFileSync("data/directory.json", JSON.stringify(localIndex, null, 2))
 
-        fs.writeFileSync("directory.json", JSON.stringify(localIndex, null, 2))
 
-        // // Write the JSON data to a file
-        // fs.writeFile('pokemon.json', JSON.stringify(data, null, 2), (err) => {
-        //     if (err) {
-        //         console.error('Error writing file:', err);
-        //         res.status(500).send('Error writing file');
-        //     } else {
-        //         console.log('JSON data saved to pokemon.json');
-        //         res.send('JSON data saved to pokemon.json');
-        //     }
-        // });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
