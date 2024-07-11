@@ -15,7 +15,7 @@ app.get('/scrape', async (req, res) => {
         let allPokes = await Promise.all(data.map( async item => {
             // console.log(item.url)
             //create index in localIndex
-            localIndex.push({ id: item.id, name: item.name, url: `http://localhost:5000/pokemon/${item.id}`})
+            localIndex.push({ id: item.id, name: item.name, url: `http://localhost:5000/${item.id}`})
             // fetch that pokemon 
             let fetch = await axios.get(item.url);
             
