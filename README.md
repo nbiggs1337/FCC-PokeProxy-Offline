@@ -1,7 +1,11 @@
 
 # Pokémon API
 
-This is a simple Node.js and Express application that serves Pokémon data from local JSON files. It provides endpoints to test the server, retrieve a list of Pokémon, and fetch specific Pokémon details based on numerical or string input.
+This is intended to be used with [FreeCodeCamps Pokemon Search App Project] (https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/build-a-pokemon-search-app-project/build-a-pokemon-search-app) when offline or unable to access the official PokeAPI.
+
+This is a simple Node.js and Express application that serves Pokémon data from local JSON files.
+It provides endpoints to test the server, retrieve a list of Pokémon, and fetch specific Pokémon details based on numerical or string input.
+
 
 ## Table of Contents
 - [Installation](#installation)
