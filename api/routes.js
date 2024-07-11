@@ -30,6 +30,7 @@ routes.get('/:input', (req, res) => {
         // if user input is a string 
         // filter down pokemon to find matching name
         let match = pokemon.filter(poke => poke.name === input.toLowerCase())
+        if(!match[0]) {res.json("Invalid Input")}
         console.log("Match found - " + match[0].name + "ID: " + match[0].id)
         // res with that id  to index -1
         res.json(pokemon[match[0].id - 1])
